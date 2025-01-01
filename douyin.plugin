@@ -1,3 +1,8 @@
+[General]
+title = Douyin Plugin
+desc = 适用于抖音的分流规则
+icon = https://example.com/icon.png
+
 [Rule]
 DOMAIN-SUFFIX,douyin.com,Proxy
 DOMAIN-SUFFIX,amemv.com,Proxy

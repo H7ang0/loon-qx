@@ -1,0 +1,21 @@
+[Plugin]
+name = 小红书增强版
+desc = 去水印/去广告/解锁保存 (H7ang0修改版)
+version = 3.1.5
+author = H7ang0
+encrypt = true
+
+[MITM]
+hostname = *.xiaohongshu.com,*.xhscdn.com,*.xiaohongshuapi.com
+
+[Script]
+# 主处理脚本 (Base64编码)
+http-request ^https?:\/\/[a-z]+\.xiaohongshu\.com\/(api\/sns\/v\d+|data\/native)\/.* script-path=https://your-cdn.com/xhs_encrypted.js,requires-body=true,timeout=15
+
+# 广告拦截规则
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/api\/(sns\/v\d+\/ads|gslb) url reject-200
+^https?:\/\/[a-z]+\.xiaohongshu\.com\/data\/native\/matrix_switches url reject-200
+
+[Script Code]
+// 以下为混淆处理的核心代码
+const _0x3c9d=['\x76\x69\x64\x65\x6f','\x62\x6f\x64\x79','\x70\x6c\x61\x79\x55\x72\x6c','\x6a\x73\x6f\x6e','\x75\x72\x6c\x5f\x6c\x69\x73\x74'];(function(_0x4f8c2d,_0x3c9d4f){const _0x1e0e6a=function(_0x4a4c78){while(--_0x4a4c78){_0x4f8c2d['push'](_0x4f8c2d['shift']());}};_0x1e0e6a(++_0x3c9d4f);}(_0x3c9d,0x1a3));const _0x1e0e=function(_0x4f8c2d,_0x3c9d4f){_0x4f8c2d=_0x4f8c2d-0x0;let _0x1e0e6a=_0x3c9d[_0x4f8c2d];return _0x1e0e6a;};const _0x4a4c78=_0x1e0e;const $=new API('xhs-pro');let body=JSON.parse($response[_0x4a4c78('0x3')]);if(body['data']){body['data'][_0x4a4c78('0x4')]=body['data'][_0x4a4c78('0x4')]?.map(_0x1c7a2c=>{if(_0x1c7a2c[_0x4a4c78('0x0')]){_0x1c7a2c[_0x4a4c78('0x0')][_0x4a4c78('0x2')]=_0x1c7a2c[_0x4a4c78('0x0')][_0x4a4c78('0x2')]?.replace(/(\?|&)watermark=.*/,'');}return _0x1c7a2c;});}$done({body:JSON.stringify(body)});

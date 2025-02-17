@@ -1,6 +1,13 @@
+[Plugin]
+name = 抖音全功能去水印
+desc = H7ang0/loon-qx的优化版
+version = 2.1
+author = H7ang0
+
 [Script]
-# 修复抖音登录
-http-response ^https?:\/\/.*douyin\.com\/.*\/jailbreak_check requires-body=1, script-path=https://raw.githubusercontent.com/Hyanguwo/loon-qx/main/block_jailbreak_check.js
+http-request ^https?:\/\/(v\.douyin\.com)\/\w+\/ script-path=https://raw.githubusercontent.com/H7ang0/loon-qx/main/Scripts/douyin.js,requires-body=true,timeout=10
+http-response ^https?:\/\/.+\.douyin.com\/aweme\/v\d\/(feed|detail|play) script-path=https://raw.githubusercontent.com/H7ang0/loon-qx/main/Scripts/aweme.js,requires-body=true
+http-response ^https?:\/\/.+\.(douyin|snssdk|amemv).com\/aweme\/v\d\/(image|sticker) script-path=https://raw.githubusercontent.com/H7ang0/loon-qx/main/Scripts/douyin-image.js,requires-body=true
 
 [MITM]
-hostname = *.douyin.com
+hostname = *.douyin.com,*.iesdouyin.com,*.snssdk.com,*.amemv.com
